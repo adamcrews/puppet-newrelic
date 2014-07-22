@@ -30,7 +30,7 @@ class newrelic::config inherits newrelic {
 
   file_line { 'set newrelic license':
     match  => 'license_key=',
-    line   => "license_key=${license}"
+    line   => "license_key=${license}",
   }
 
   file_line { 'set newrelic log_file':
@@ -39,12 +39,12 @@ class newrelic::config inherits newrelic {
   }
 
   file_line { 'set newrelic pid_file':
-    match  => 'pidfile='
+    match  => 'pidfile=',
     line   => "pidfile=${pid_file}",
   }
 
   file_line { 'set newrelic ssl':
-    match  => 'ssl='
+    match  => 'ssl=',
     line   => "ssl=${real_ssl}",
   }
 
@@ -57,7 +57,7 @@ class newrelic::config inherits newrelic {
 
   if $ssl_ca_bundle { 
     file_line { 'Set newrelic ssl_ca_bundle':
-      match  => 'ssl_ca_bundle='
+      match  => 'ssl_ca_bundle=',
       line   => "ssl_ca_bundle=${ssl_ca_bundle}",
     }
   }
@@ -78,7 +78,7 @@ class newrelic::config inherits newrelic {
 
   if $collector_host { 
     file_line { 'Set newrelic collector host':
-      match  => 'collector_host='
+      match  => 'collector_host=',
       line   => "collector_host=${collector_host}",
     }
   }
