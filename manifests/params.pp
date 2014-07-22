@@ -38,11 +38,11 @@ class newrelic::params {
       $repo_attributes = {
         newrelic => {
           baseurl  => 'http://yum.newrelic.com/pub/newrelic/el5/$basearch',
-          #gpgkey   => 'http://yum.newrelic.com/548C16BF.gpg',
-          #descr    => 'New Relic packages for Enterprise Linux 5 - $basearch',
-          #enabled  => true,
-          #gpgcheck => true,
-          #target   => '/etc/yum.repos.d/newrelic.repo',
+          gpgkey   => 'http://yum.newrelic.com/548C16BF.gpg',
+          descr    => 'New Relic packages for Enterprise Linux 5 - $basearch',
+          enabled  => true,
+          gpgcheck => true,
+          target   => '/etc/yum.repos.d/newrelic.repo',
         }
       }
     }
