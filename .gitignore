@@ -1,0 +1,33 @@
+## MAC OS
+.DS_Store
+
+## TEXTMATE
+*.tmproj
+tmtags
+
+## EMACS
+*~
+\#*
+.\#*
+
+## VIM
+*.swp
+tags
+
+pkg/
+Gemfile.lock
+vendor/
+spec/fixtures/
+.vagrant/
+.bundle/
+coverage/
+
+# tmp ignoring testing stuff, because it's fubar'd
+Gemfile
+Gemfile.lock
+Rakefile
+nodeset.yml
+spec/
+.fixtures.yml
+.sync.yml
+.travis.yml
