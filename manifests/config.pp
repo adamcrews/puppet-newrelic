@@ -11,7 +11,9 @@ class newrelic::config inherits newrelic {
     notify  => Service['newrelic'],
   }
 
-  Augeas { 
+  File_line { 
+    ensure  => present,
+    path    => $config_file,
     require => File['config_file'],
     notify  => Service['newrelic'],
   }
@@ -26,55 +28,65 @@ class newrelic::config inherits newrelic {
     mode   => '0640',
   }
 
-  augeas { 'Set newrelic options':
-    context => "/files/${config_file}",
-    changes => [
-      "set license_key ${license}",
-      "set logfile ${log_file}",
-      "set pidfile ${pid_file}",
-      "set ssl ${real_ssl}",
-    ],
+  file_line { 'set newrelic license':
+    match  => 'license_key=',
+    line   => "license_key=${license}"
+  }
+
+  file_line { 'set newrelic log_file':
+    match  => 'logfile=',
+    line   => "logfile=${log_file}",
+  }
+
+  file_line { 'set newrelic pid_file':
+    match  => 'pidfile='
+    line   => "pidfile=${pid_file}",
+  }
+
+  file_line { 'set newrelic ssl':
+    match  => 'ssl='
+    line   => "ssl=${real_ssl}",
   }
 
   if $proxy {
-    augeas { 'Set newrelic proxy':
-      context => "/files/${config_file}",
-      changes => "set proxy ${proxy}",
+    file_line { 'Set newrelic proxy':
+      match  => 'proxy=',
+      line   => "proxy=${proxy}",
     }
   }
 
   if $ssl_ca_bundle { 
-    augeas { 'Set newrelic ssl_ca_bundle':
-      context => "/files/${config_file}",
-      changes => "set ssl_ca_bundle ${ssl_ca_bundle}",
+    file_line { 'Set newrelic ssl_ca_bundle':
+      match  => 'ssl_ca_bundle='
+      line   => "ssl_ca_bundle=${ssl_ca_bundle}",
     }
   }
 
   if $ssl_ca_path { 
-    augeas { 'Set newrelic ssl_ca_path':
-      context => "/files/${config_file}",
-      changes => "set ssl_ca_path ${ssl_ca_path}",
+    file_line { 'Set newrelic ssl_ca_path':
+      match  => 'ssl_ca_path=',
+      line   => "ssl_ca_path=${ssl_ca_path}",
     }
   }
 
   if $log_level {
-    augeas { 'Set newrelic loglevel':
-      context => "/files/${config_file}",
-      changes => "set loglevel ${log_level}",
+    file_line { 'Set newrelic loglevel':
+      match  => 'loglevel=',
+      line   => "loglevel=${log_level}",
     }
   }
 
   if $collector_host { 
-    augeas { 'Set newrelic collector host':
-      context => "/files/${config_file}",
-      changes => "set collector_host ${collector_host}",
+    file_line { 'Set newrelic collector host':
+      match  => 'collector_host='
+      line   => "collector_host=${collector_host}",
     }
   }
 
   if $timeout { 
-    augeas { 'Set newrelic timeout':
-      context => "/files/${config_file}",
-      changes => "set timeout ${timeout}",
+    file_line { 'Set newrelic timeout':
+      match  => 'timeout=',
+      line   => "timeout=${timeout}",
     }
   }
 
