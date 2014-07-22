@@ -1,5 +1,5 @@
 name    'adamcrews-newrelic'
-version '0.1.1'
+version '0.0.1'
 source 'git://github.com/adamcrews/puppet-newrelic'
 author 'Adam Crews'
 license 'Apache License, Version 2.0'
